@@ -1,0 +1,1 @@
+## Opa, aqui podemos fazer semelhante ao exercicio dos testes, para implementar as regras de negocio e utilizar as reflections para fazer os testes de forma sequencial.

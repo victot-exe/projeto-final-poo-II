@@ -1,7 +1,7 @@
-package br.edu.g2.locacaoDeVeiculos.interfaces;
+package br.edu.g2.locacaoDeVeiculos.model.interfaces;
 
 import java.util.List;
-
+//TODO Ainda não pensei como implementar o crud, talvez fazer uma especie de controler??
 public interface CrudBase<T> {
     //C
     void insert(T t);
