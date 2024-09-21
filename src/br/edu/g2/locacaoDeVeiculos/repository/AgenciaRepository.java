@@ -1,4 +1,7 @@
 package br.edu.g2.locacaoDeVeiculos.repository;
 
-public class AgenciaRepository {
+import br.edu.g2.locacaoDeVeiculos.model.Agencia;
+
+public interface AgenciaRepository {
+    void inserir(Agencia a);
 }
