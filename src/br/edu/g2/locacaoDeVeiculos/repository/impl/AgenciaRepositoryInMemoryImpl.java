@@ -8,12 +8,32 @@ import java.util.List;
 
 public class AgenciaRepositoryInMemoryImpl implements AgenciaRepository {
 
-    private List<Agencia> dados = new ArrayList<>();
+    private List<Agencia> agencias = new ArrayList<>();
 
     //TODO métodos
-//    public Agencia inserir(Agencia obj) {
-//        // gerar um ID e atribuir o ID ao objeto
-//
-//        return obj;
-//    }
+    @Override
+    public Agencia inserir(Agencia ag) {
+        agencias.add(ag);
+        return null;
+    }
+
+    @Override
+    public Agencia alterar(Agencia ag) {
+        return null;
+    }
+
+    @Override
+    public Agencia deletar(Agencia ag) {
+        return null;
+    }
+
+    @Override
+    public Agencia buscaPorId(String id) {
+        return null;
+    }
+
+    @Override
+    public Agencia deletarPorId(String id) {
+        return null;
+    }
 }
