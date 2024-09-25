@@ -2,9 +2,17 @@ package br.edu.g2.locacaoDeVeiculos.model.veiculo;
 
 import br.edu.g2.locacaoDeVeiculos.model.BaseModel;
 
-public abstract class Veiculo extends BaseModel {
-    private String modelo;
-    private TipoVeiculo tipo;
+public class Veiculo extends BaseModel {
+
     private String placa;
-    private boolean disponivel;
+
+    private double valorDiaria;
+
+    public double getValorDiaria() {
+        return valorDiaria;
+    }
+
+    public void setValorDiaria(double valorDiaria) {
+        this.valorDiaria = valorDiaria;
+    }
 }

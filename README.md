@@ -21,4 +21,7 @@
 
 #### Itens bônus
 1. Paginar as listas envolvidas;
-2. Dados sendo gravados em arquivos, simulando uma base de dados
+2. Dados sendo gravados em arquivos, simulando uma base de dados  
+
+## Comentarios
+* Onde colocar a lista de clientes para não ter repetidos?
