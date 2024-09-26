@@ -8,11 +8,21 @@ public class Veiculo extends BaseModel {
 
     private double valorDiaria;
 
+    private boolean disponivel;
+
     public double getValorDiaria() {
         return valorDiaria;
     }
 
     public void setValorDiaria(double valorDiaria) {
         this.valorDiaria = valorDiaria;
+    }
+
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel() {
+        disponivel = !disponivel;
     }
 }

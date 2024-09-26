@@ -6,6 +6,7 @@ import br.edu.g2.locacaoDeVeiculos.model.cliente.Cliente;
 import br.edu.g2.locacaoDeVeiculos.model.veiculo.Veiculo;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class Aluguel extends BaseModel {
 
@@ -19,7 +20,24 @@ public class Aluguel extends BaseModel {
 
     private LocalDate dataFim;
 
-    private double valorTotal;
+    private double valorFinal;
+
+
+    public Aluguel (Cliente cliente, Veiculo veiculo, Agencia agencia, LocalDate dataInicio){
+        super();
+        this.cliente = cliente;
+        this.veiculo = veiculo;
+        this.agencia = agencia;
+        this.dataInicio = dataInicio;
+    }
+
+    public Aluguel (Cliente cliente, Veiculo veiculo, Agencia agencia, double valorFinal){
+        super();
+        this.cliente = cliente;
+        this.veiculo = veiculo;
+        this.agencia = agencia;
+        this.valorFinal = valorFinal;
+    }
 
     public Cliente getCliente() {
         return cliente;
@@ -61,11 +79,12 @@ public class Aluguel extends BaseModel {
         this.dataFim = dataFim;
     }
 
-    public double getValorTotal() {
-        return valorTotal;
+    public void setValorFinal(double valorFinal) {
+        this.valorFinal = valorFinal;
     }
 
-    public void setValorTotal(double valorTotal) {
-        this.valorTotal = valorTotal;
+    public double getDiasAlugado(){
+        return ChronoUnit.DAYS.between(dataInicio, dataFim);
     }
+
 }

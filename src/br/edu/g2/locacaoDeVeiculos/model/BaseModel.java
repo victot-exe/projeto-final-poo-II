@@ -12,7 +12,7 @@ public abstract class BaseModel {
         this.uuid = UUID.randomUUID().toString();
     }
 
-        public String getUuid() {
+    public String getUuid() {
         return uuid;
     }
 

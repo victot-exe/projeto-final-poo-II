@@ -7,22 +7,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VeiculoRepositoryInMemoryImpl implements VeiculoRepository {
+
+    //Essa lista precisa ser estática? fazer um VeiculoFactory?
     private List<Veiculo> veiculos = new ArrayList<>();
 
     @Override
-    public Veiculo inserir(Veiculo v) {
-        veiculos.add(v);
-        return v;
+    public Veiculo inserir(Veiculo veiculo) {
+        veiculos.add(veiculo);
+        return veiculo;
     }
 
     @Override
-    public Veiculo alterar(Veiculo v) {
+    public Veiculo alterar(Veiculo veiculo) {
         // Lógica para alterar veículo
         return null;
     }
 
     @Override
-    public Veiculo deletar(Veiculo v) {
+    public Veiculo deletar(Veiculo veiculo) {
         // Lógica para deletar veículo
         return null;
     }
