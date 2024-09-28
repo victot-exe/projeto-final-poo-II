@@ -1,8 +1,7 @@
 # `public class Aluguel{}`
 
 A classe aluguel é a classe responsável por conter os dados de quando alguém aluga um carro.  
-O indicado é que quando for criar uma nova instância da mesma utilizar a classe [`AluguelService{}`](src/br/edu/g2/locacaoDeVeiculos/service/impl/AluguelServiceImpl.java)
-
+O indicado é que quando for criar uma nova instância da mesma utilizar a classe `AluguelService{}`
 ## `public class AluguelServiceImpl{}`
 Esta é a classe responsável por criar novas instâncias de aluguel, ela pega os dados responsáveis para se criar, tendo duas opções do método alugar:
 * A primeira é onde não recebemos uma data e se entende que o carro está sendo alugado agora, ela define a Data e hora atual e chama a segunda forma do método;
