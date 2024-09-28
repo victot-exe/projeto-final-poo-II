@@ -9,18 +9,19 @@ public abstract class DevolucaoServiceBase implements DevolucaoService {
 
     @Override
     public Devolucao realizarDevolucao(Aluguel aluguel) {
-        //logica para mudar o estado de disponibilidade do carro
+
         long diasAlugado = ChronoUnit.DAYS.between(aluguel.getDataInicio(),aluguel.getDataFim());
 
         double desconto = this.calcularDescontoCliente(diasAlugado);
 
+        aluguel.setValorFinal(calculaValorFinal(aluguel, desconto));
 
         return new Devolucao(aluguel, desconto);
     }
 
     public abstract double calcularDescontoCliente(long diasAlugado);
 
-//    public double calcularValorFinal(Aluguel aluguel, double desconto) {
-//        return (aluguel.getDiasAlugado() * aluguel.getVeiculo().getValorDiaria()) * (1 - desconto);
-//    }
+    private double calculaValorFinal(Aluguel aluguel, double desconto) {
+        return aluguel.getDiasAlugado() * aluguel.getVeiculo().getValorDiaria() * (desconto);
+    }
 }

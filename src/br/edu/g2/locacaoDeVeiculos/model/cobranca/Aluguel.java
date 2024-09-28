@@ -31,14 +31,6 @@ public class Aluguel extends BaseModel {
         this.dataInicio = dataInicio;
     }
 
-    public Aluguel (Cliente cliente, Veiculo veiculo, Agencia agencia, double valorFinal){
-        super();
-        this.cliente = cliente;
-        this.veiculo = veiculo;
-        this.agencia = agencia;
-        this.valorFinal = valorFinal;
-    }
-
     public Cliente getCliente() {
         return cliente;
     }
@@ -83,8 +75,17 @@ public class Aluguel extends BaseModel {
         this.valorFinal = valorFinal;
     }
 
+    public double getValorFinal() {
+        return valorFinal;
+    }
+
     public double getDiasAlugado(){
-        return ChronoUnit.DAYS.between(dataInicio, dataFim);
+        if(dataFim != null){
+            return ChronoUnit.DAYS.between(dataInicio, dataFim);
+        }else{
+            dataFim = LocalDate.now();
+            return getDiasAlugado();
+        }
     }
 
 }

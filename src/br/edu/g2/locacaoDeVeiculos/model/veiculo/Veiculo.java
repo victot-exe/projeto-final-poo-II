@@ -22,7 +22,7 @@ public class Veiculo extends BaseModel {
         return disponivel;
     }
 
-    public void setDisponivel() {
+    public void mudarDisponibilidade() {
         disponivel = !disponivel;
     }
 }
