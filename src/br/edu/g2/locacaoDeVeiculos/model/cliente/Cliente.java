@@ -9,6 +9,14 @@ public class Cliente extends BaseModel {
     private String documento;
     private TipoCliente tipoCliente;
 
+    public Cliente(TipoCliente tipoCliente, String nome, String documento, String telefone) {
+        super();
+        this.tipoCliente = tipoCliente;
+        this.nome = nome;
+        this.documento = documento;
+        this.telefone = telefone;
+    }
+
     public String getNome() {
         return nome;
     }
