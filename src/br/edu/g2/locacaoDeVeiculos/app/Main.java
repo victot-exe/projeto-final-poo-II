@@ -43,7 +43,7 @@ public class Main {
                         cadastrarCliente();
                         break;
                     case 8:
-                         buscarTodosClientes();
+                        buscarTodosClientes();
                         break;
 
                     case 9:
@@ -86,7 +86,7 @@ public class Main {
         System.out.println("6.  Buscar Agência por Nome ou Logradouro");
         System.out.println("7.  Cadastrar Cliente");
         System.out.println("8.  Buscar Todos os Clientes");
-               System.out.println("9.  Alterar Cliente");
+        System.out.println("9.  Alterar Cliente");
         System.out.println("10. Alugar Veículo");
         System.out.println("11. Devolver Veículo");
         System.out.println("12. Gerar comprovante");
@@ -99,21 +99,21 @@ public class Main {
         System.out.println("Digite : 1- pessoal Física, 2 - Pessoa Jurídica ");
         String tipo= sc.nextLine();
         TipoCliente tipoCliente = null;
-        
+
         if(tipo.equals("1")){
             tipoCliente= TipoCliente.PESSOA_FISICA;
         }else if (tipo.equals("2")) {
             tipoCliente = TipoCliente.PESSOA_JURIDICA;
 
         }else{
-        System.out.println("Tipo Inválido");}
+            System.out.println("Tipo Inválido");}
 
         System.out.println("Nome:");
         String nome = sc.nextLine();
 
         System.out.print("Telefone: ");
         String telefone = sc.nextLine();
-        
+
         String documento;
         if(tipoCliente == TipoCliente.PESSOA_JURIDICA){
             System.out.println("Digite o CNPJ");
@@ -140,7 +140,7 @@ public class Main {
         for(Cliente c : clienteRepository.getClientes()){
             System.out.println();
             System.out.println("Tipo de Cliente: " + (c.getTipoCliente() == TipoCliente.PESSOA_FISICA ? "Pessoa Física" : "Pessoa Jurídica"));
-            System.out.println("Nome: " + c.getUuid());
+            System.out.println("Id: " + c.getUuid());
             System.out.println("Nome: " + c.getNome());
             System.out.println("Telefone: " + c.getTelefone());
             System.out.println("Documento: " + c.getDocumento());
@@ -149,34 +149,34 @@ public class Main {
 
 
 
-}
-        private static void alterarCliente() {
-            System.out.print("Digite o ID do Cliente: ");
-            String id = sc.nextLine();
-            Cliente cliente = clienteRepository.buscaPorId(id);
-            System.out.println("Novo nome");
-            String novoNome = sc.nextLine();
-            if(!novoNome.isEmpty()){
-                cliente.setNome(novoNome);
+    }
+    private static void alterarCliente() {
+        System.out.print("Digite o ID do Cliente: ");
+        String id = sc.nextLine();
+        Cliente cliente = clienteRepository.buscaPorId(id);
+        System.out.println("Novo nome");
+        String novoNome = sc.nextLine();
+        if(!novoNome.isEmpty()){
+            cliente.setNome(novoNome);
+        }
+        System.out.println("Novo telefone ");
+        String novoTelefone = sc.nextLine();
+        if(!novoTelefone.isEmpty()){
+            cliente.setTelefone(novoTelefone);
+        }
+        if (cliente.getTipoCliente() == TipoCliente.PESSOA_FISICA) {
+            System.out.println("Novo CPf : ");
+            String novoCpf = sc.nextLine();
+            cliente.setDocumento(novoCpf);
+        }else {
+            System.out.println("Novo CNPJ : ");
+            String novoCnpj = sc.nextLine();
+            if(!novoCnpj.isEmpty()){
+                cliente.setDocumento(novoCnpj);
             }
-            System.out.println("Novo telefone ");
-            String novoTelefone = sc.nextLine();
-            if(!novoTelefone.isEmpty()){
-                cliente.setTelefone(novoTelefone);
-            }
-            if (cliente.getTipoCliente() == TipoCliente.PESSOA_FISICA) {
-                System.out.println("Novo CPf : ");
-                String novoCpf = sc.nextLine();
-                cliente.setDocumento(novoCpf);
-            }else {
-                System.out.println("Novo CNPJ : ");
-                String novoCnpj = sc.nextLine();
-                if(!novoCnpj.isEmpty()){
-                    cliente.setDocumento(novoCnpj);
-                }
-            }
-            clienteRepository.alterar(cliente);
-            System.out.println("Cliente alterado com sucesso.");
+        }
+        clienteRepository.alterar(cliente);
+        System.out.println("Cliente alterado com sucesso.");
 
     }
 
