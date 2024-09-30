@@ -3,8 +3,13 @@ package br.edu.g2.locacaoDeVeiculos.app;
 import br.edu.g2.locacaoDeVeiculos.dataframework.CrudRepositoryExeption;
 import br.edu.g2.locacaoDeVeiculos.model.cliente.Cliente;
 import br.edu.g2.locacaoDeVeiculos.model.cliente.TipoCliente;
+import br.edu.g2.locacaoDeVeiculos.model.veiculo.TipoVeiculo;
+import br.edu.g2.locacaoDeVeiculos.model.veiculo.Veiculo;
 import br.edu.g2.locacaoDeVeiculos.repository.ClienteRepository;
+import br.edu.g2.locacaoDeVeiculos.repository.VeiculoRepository;
 import br.edu.g2.locacaoDeVeiculos.repository.impl.ClienteRepositoryInMemoryImpl;
+import br.edu.g2.locacaoDeVeiculos.repository.impl.VeiculoRepositoryInMemoryImpl;
+import br.edu.g2.locacaoDeVeiculos.service.impl.CriaVeiculoFactory;
 
 import java.util.Scanner;
 
@@ -14,6 +19,7 @@ public class Main {
 
     private static Scanner sc = new Scanner(System.in);
     private static ClienteRepository clienteRepository = new ClienteRepositoryInMemoryImpl();
+    private static VeiculoRepository veiculoRepository = new VeiculoRepositoryInMemoryImpl();
 
     public static void main(String[] args) {
         while (true) {
@@ -22,13 +28,13 @@ public class Main {
                 int opcao = Integer.parseInt(sc.nextLine());
                 switch (opcao) {
                     case 1:
-                        //cadastrarVeiculo();
+                        cadastrarVeiculo(veiculoRepository);
                         break;
                     case 2:
-                        //alterarVeiculo();
+                        alterarVeiculo(veiculoRepository);
                         break;
                     case 3:
-                        //buscarVeiculo();
+                        buscarVeiculoPorNome(veiculoRepository);
                         break;
                     case 4:
                         //cadastrarAgencia();
@@ -180,5 +186,79 @@ public class Main {
 
     }
 
+    private static void cadastrarVeiculo(VeiculoRepository veiculoRepo) {
+        System.out.println("\nCriação de Veículo");
+
+        String placa;
+
+        while (true) {
+            System.out.print("Digite a placa: ");
+            placa = sc.nextLine().trim().toUpperCase();
+
+            // Validação da placa
+            String regex = "^[A-Z]{3}\\d{1}[A-Z]{1}\\d{2}$";
+            if (!placa.matches(regex)) {
+                System.out.println("Placa inválida! A placa deve seguir o formato ABC1D23.");
+                continue;
+            }
+            break;
+        }
+
+
+        System.out.print("Digite o modelo: ");
+        String nome = sc.nextLine();
+
+        System.out.println("Escolha o tipo de veículo:");
+        System.out.println("1. Carro");
+        System.out.println("2. Moto");
+        System.out.println("3. Caminhão");
+        int tipoOpcao = sc.nextInt();
+        sc.nextLine();
+
+        TipoVeiculo tipoVeiculo = null;
+        switch (tipoOpcao) {
+            case 1:
+                tipoVeiculo = TipoVeiculo.CARRO;
+                break;
+            case 2:
+                tipoVeiculo = TipoVeiculo.MOTO;
+                break;
+            case 3:
+                tipoVeiculo = TipoVeiculo.CAMINHAO;
+                break;
+            default:
+                System.out.println("Opção inválida. Veículo não criado.");
+                return;
+        }
+
+        boolean disponivel = true;
+
+        // Usar a factory para criar o tipo específico de veículo
+        CriaVeiculoFactory factory = new CriaVeiculoFactory();
+        Veiculo veiculoFinal = factory.criarVeiculo(tipoVeiculo, placa, nome);
+
+        // Adicionar o veículo no repositório
+        veiculoRepo.inserir(veiculoFinal);
+        System.out.println("Veículo do tipo " + tipoVeiculo + " criado com sucesso!");
+    }
+
+    private static void buscarVeiculoPorNome( VeiculoRepository veiculoRepo) {
+        System.out.println("\nBusca de Veículo");
+
+        System.out.print("Digite a parte do nome do modelo do veículo que deseja buscar: ");
+        String modeloIncompleto = sc.nextLine();
+
+        veiculoRepo.buscarPorNome(modeloIncompleto);
+    }
+
+    private static void alterarVeiculo(VeiculoRepository veiculoRepo) {
+        System.out.println("\nAlteração de Veículo");
+
+        System.out.print("Digite a placa do veículo que deseja alterar: ");
+        String placaAntiga = sc.nextLine();
+
+        // Chama o método para atualizar o veículo
+        veiculoRepo.atualizarPorPlaca(placaAntiga);
+    }
 
 }

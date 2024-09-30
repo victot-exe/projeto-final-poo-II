@@ -20,4 +20,5 @@ public interface VeiculoRepository extends CrudRepository<Veiculo, String> {
 
     // Método para buscar por parte do nome
     public List<Veiculo> buscarPorNome(String nome);
+    public Veiculo atualizarPorPlaca(String placa);
 }
