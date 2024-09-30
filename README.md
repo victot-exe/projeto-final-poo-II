@@ -1,67 +1,98 @@
-# Locadora de veiculos (POO II)
-_Este é um projeto proposto para ser resolvido em grupo ao final do modulo de Programação orientada a objetos II, no curso Santander Coders 2024.1 da AdaTech.  
-Abaixo segue um descritivo das classes e como fizemos para implementar uma locadora de veiculos.
+# Locadora de Veículos (POO II)
 
-# `public class Aluguel{}`
+_Este é um projeto em grupo desenvolvido no final do módulo de Programação Orientada a Objetos II do curso Santander Coders 2024.1 da AdaTech. Abaixo segue uma descrição das principais classes e funcionalidades implementadas na aplicação de locadora de veículos._
 
-A classe aluguel é a classe responsável por conter os dados de quando alguém aluga um carro.  
-O indicado é que quando for criar uma nova instância da mesma utilizar a classe `AluguelService{}`
-## `public class AluguelServiceImpl{}`
-Esta é a classe responsável por criar novas instâncias de aluguel, ela pega os dados responsáveis para se criar, tendo duas opções do método alugar:
-* A primeira é onde não recebemos uma data e se entende que o carro está sendo alugado agora, ela define a Data e hora atual e chama a segunda forma do método;
-* A segunda forma do método alugar tem a opção de escolher uma data para início do aluguel, ela verifica se o veículo escolhido está disponível e retorna uma instancia de `Aluguel{}` ou gera uma exceção dizendo que o veículo não pode ser alugado pois não está disponível.
+---
 
-# `public class DevolucaoFactory{}`
+## Estrutura do Projeto
 
-Como o próprio nome já diz ela é uma fábrica de instancias de `public record Devolucao` atravéz do método `devolverVeiculo(Aluguel alguel)`
+### 1. Aluguel
 
-* Este método recebe uma instância de `Aluguel{}`, verifica o tipo do cliente para saber qual tipo de desconto aplicar e chama a implementação de `DevolucaoService{}` tendo uma para pessoa física e outra para pessoa jurídica
+#### `public class Aluguel`
+Classe responsável por armazenar os dados do aluguel de veículos. Para criar uma nova instância de `Aluguel`, deve-se utilizar a classe `AluguelService`.
 
-## `public interface DevolucaoServiceBase{}`
+#### `public class AluguelServiceImpl`
+Classe que gerencia o processo de aluguel de veículos, com dois métodos principais:
 
-É a interface base para implementações dos diferentes tipos de clientes.
+- **Método alugar (sem data)**: Define a data e hora atuais como início do aluguel.
+- **Método alugar (com data)**: Permite definir a data de início e verifica se o veículo está disponível. Caso não esteja, uma exceção é lançada.
 
+---
 
-#   `public class Cliente{}`
+### 2. Devolução
 
-Essa classe é responsável para representar as informações de um cliente que alugará um veículo. A instância dessa classe irá conter os dados como nome,
-documentos de identificação e informações de contato. Ela é um dos modelos de dados que será utilizado no processo de aluguel.
+#### `public class DevolucaoFactory`
+Fábrica de instâncias de `public record Devolucao` através do método `devolverVeiculo(Aluguel aluguel)`.
 
-##  `public class ClienteRepositoryInMemoryImpl{}`
-Esse é o repositório que armazenará os dados em memória, simulando um banco de dados. A classe gerencia as operações de CRUD (criar, ler, atualizar e excluir).
-Ela fornece métodos como:
-*   Salvar: Adiciona um novo cliente à lista de clientes em memória.
-* Buscar: Retorna uma instância de Cliente com base no documento, ou retornar uma mensagem informando que o cliente não foi encontrado.
-* atualizar: Atualiza as informações de um cliente existente.
-* Remover: Remove um cliente da lista de clientes com base no documento. 
+- O método verifica o tipo de cliente (físico ou jurídico) para aplicar o desconto correto e utiliza o serviço apropriado (`DevolucaoService`).
 
-# `public interface CrudRepository`
-Esta interface é responsável por estabelecer o contrato com as transações crud para que as implementações dela tenham que fazer as operações básicas.
+#### `public interface DevolucaoServiceBase`
+Interface base para as diferentes implementações de serviço de devolução de veículos.
 
-# `public interface AgenciaRepository`
-Implementando a interface `CrudRepository` ela diz que vai aceitar o tipo `Agencia` e direciona o crud para uma lista de `Agencia`.
+---
 
-## `public class AgencaRepositoryInMemoryImpl{}`
-Esta é a classe que implementa o CRUD de `AgenciaRepository` para que os dados das agencias sejam salvos InMemory usando uma `List<Agencia>`;
+### 3. Cliente
 
+#### `public class Cliente`
+Classe que representa as informações de um cliente (nome, documentos, contato), utilizado no processo de aluguel de veículos.
 
+#### `public class ClienteRepositoryInMemoryImpl`
+Repositório que armazena dados de clientes em memória, simulando um banco de dados. Gerencia operações de CRUD:
 
+- **Salvar**: Adiciona um novo cliente.
+- **Buscar**: Retorna um cliente com base no documento.
+- **Atualizar**: Atualiza informações do cliente.
+- **Remover**: Remove um cliente com base no documento.
 
-### Criar uma aplicação que gerencie o aluguel de veículos, onde cada item abaixo seja considerado:
+---
 
-#### Itens obrigatórios
+### 4. Repositórios
 
-1. Cadastrar os veículos;
-2. Alterar um veículo cadastrado;
-3. Buscar um veículo por parte do nome;
-4. Cadastrar a agência onde o veículo será alugado/devolvido;
-5. Alterar a agência onde o veículo será alugado/devolvido;
-6. Buscar uma agência por parte do nome ou do logradouro do endereço;
-7. Cadastrar o cliente (pessoa fisica/juridica)
-8. Alterar o cliente (pessoa fisica/juridica)
-9. Alugar um veículo para pessoa fisica;
-10. Alugar um veículo para pessoa juridica;
-11. Devolver um veículo para pessoa fisica;
-12. Devolver um veículo para pessoa juridica;
-13. Gerar um comprovante com todos os dados do aluguel (aberto para o grupo decidir o que vai ser demonstrado);
-14. Gerar um comprovante com todos os dados da devolução (aberto para o grupo decidir o que vai ser demonstrado)
+#### `public interface CrudRepository`
+Interface que define operações CRUD (criar, ler, atualizar e excluir) para qualquer implementação.
+
+#### `public interface AgenciaRepository`
+Extensão de `CrudRepository`, direcionando as operações para uma lista de `Agencia`.
+
+#### `public class AgenciaRepositoryInMemoryImpl`
+Implementação do CRUD de agências, salvando os dados em memória utilizando uma `List<Agencia>`.
+
+---
+
+### 5. Veículo
+
+#### `public class Veiculo`
+Classe que representa um veículo cadastrado no sistema. Para criar, alterar, ou buscar veículos, deve-se utilizar o serviço `VeiculoService`.
+
+#### `public class VeiculoServiceImpl`
+Classe responsável por gerenciar veículos, oferecendo métodos para criar, deletar, alterar e realizar buscas.
+
+#### `public class VeiculoFactory`
+Fábrica de instâncias de `Veiculo`, através do método `criarVeiculo(TipoVeiculo tipoVeiculo, String placa, String modelo)`, que cria um veículo de acordo com o tipo especificado.
+
+---
+
+## Funcionalidades da Aplicação
+
+A aplicação gerencia o processo de aluguel e devolução de veículos, com as seguintes funcionalidades obrigatórias:
+
+1. **Cadastrar veículos**.
+2. **Alterar veículos cadastrados**.
+3. **Buscar veículo por parte do nome**.
+4. **Cadastrar agência de aluguel/devolução**.
+5. **Alterar agência de aluguel/devolução**.
+6. **Buscar agência por parte do nome ou logradouro**.
+7. **Cadastrar cliente (físico/jurídico)**.
+8. **Alterar cliente (físico/jurídico)**.
+9. **Alugar veículo para pessoa física**.
+10. **Alugar veículo para pessoa jurídica**.
+11. **Devolver veículo para pessoa física**.
+12. **Devolver veículo para pessoa jurídica**.
+13. **Gerar comprovante de aluguel** (detalhes a serem definidos pelo grupo).
+14. **Gerar comprovante de devolução** (detalhes a serem definidos pelo grupo).
+
+---
+
+## Observações Finais
+
+Este projeto exemplifica a aplicação dos conceitos de POO em um cenário realista de locadora de veículos, incluindo padrões de projeto como fábrica e repositórios, além da separação de responsabilidades entre serviços, entidades e repositórios.
