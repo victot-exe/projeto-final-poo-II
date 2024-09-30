@@ -13,7 +13,7 @@ public abstract class BaseModel {
     }
 
     public String getUuid() {
-        return uuid;
+        return uuid.substring(0,8);
     }
 
     public LocalDateTime getCreatedDate() {

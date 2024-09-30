@@ -12,6 +12,11 @@ public class ClienteRepositoryInMemoryImpl implements ClienteRepository {
         private List<Cliente> clientes = new ArrayList<>();
 
     @Override
+    public List<Cliente> getClientes() {
+        return clientes; // Retorna a lista de clientes
+    }
+
+    @Override
     public Cliente inserir(Cliente cliente) {
         if(verificacaoCliente(cliente.getDocumento())){
             throw new CrudRepositoryExeption("Cliente já registrado");
@@ -50,6 +55,15 @@ public class ClienteRepositoryInMemoryImpl implements ClienteRepository {
         throw new CrudRepositoryExeption("Cliente não encontrado para atualização.");
     }
 
+    public Cliente buscaPordoc(String doc) {
+        for(Cliente cliente : clientes){
+            if(cliente.getDocumento().equalsIgnoreCase(doc)) {
+                return cliente;
+            }
+        }
+        throw new CrudRepositoryExeption("Cliente não encontrado para atualização.");
+    }
+
     @Override
     public Cliente deletarPorId(String id) {
         Cliente clienteEncontrado= buscaPorId(id);
@@ -73,7 +87,7 @@ public class ClienteRepositoryInMemoryImpl implements ClienteRepository {
     private boolean verificacaoCliente(String documento) {
         for (Cliente cliente : clientes){
             if(cliente.getDocumento().equalsIgnoreCase(documento)) {
-                return true;
+                throw new CrudRepositoryExeption("Cliente já registrado.");
             }
         }
         return false;
