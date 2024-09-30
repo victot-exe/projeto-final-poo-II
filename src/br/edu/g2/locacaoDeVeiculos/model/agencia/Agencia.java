@@ -1,4 +1,4 @@
-package br.edu.g2.locacaoDeVeiculos.model.Agencia;
+package br.edu.g2.locacaoDeVeiculos.model.agencia;
 
 import br.edu.g2.locacaoDeVeiculos.model.BaseModel;
 

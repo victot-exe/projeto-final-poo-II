@@ -1,7 +1,7 @@
 package br.edu.g2.locacaoDeVeiculos.repository;
 
 import br.edu.g2.locacaoDeVeiculos.dataframework.CrudRepository;
-import br.edu.g2.locacaoDeVeiculos.model.Agencia.Agencia;
+import br.edu.g2.locacaoDeVeiculos.model.agencia.Agencia;
 
 public interface AgenciaRepository extends CrudRepository<Agencia, String> {
 

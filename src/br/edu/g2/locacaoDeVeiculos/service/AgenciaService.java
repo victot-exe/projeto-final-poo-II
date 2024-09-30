@@ -1,6 +1,6 @@
 package br.edu.g2.locacaoDeVeiculos.service;
 
-import br.edu.g2.locacaoDeVeiculos.model.Agencia.Agencia;
+import br.edu.g2.locacaoDeVeiculos.model.agencia.Agencia;
 import br.edu.g2.locacaoDeVeiculos.repository.AgenciaRepository;
 
 public abstract class AgenciaService {

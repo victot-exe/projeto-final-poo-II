@@ -1,6 +1,6 @@
 package br.edu.g2.locacaoDeVeiculos.service.impl;
 
-import br.edu.g2.locacaoDeVeiculos.model.Agencia.Agencia;
+import br.edu.g2.locacaoDeVeiculos.model.agencia.Agencia;
 import br.edu.g2.locacaoDeVeiculos.model.cliente.Cliente;
 import br.edu.g2.locacaoDeVeiculos.model.cobranca.Aluguel;
 import br.edu.g2.locacaoDeVeiculos.model.veiculo.Veiculo;

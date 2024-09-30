@@ -1,8 +1,6 @@
 package br.edu.g2.locacaoDeVeiculos.repository.impl;
 
 import br.edu.g2.locacaoDeVeiculos.dataframework.CrudRepositoryExeption;
-import br.edu.g2.locacaoDeVeiculos.model.Agencia.Agencia;
-import br.edu.g2.locacaoDeVeiculos.model.cliente.Cliente;
 import br.edu.g2.locacaoDeVeiculos.model.veiculo.Veiculo;
 import br.edu.g2.locacaoDeVeiculos.repository.VeiculoRepository;
 
