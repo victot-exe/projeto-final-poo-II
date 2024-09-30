@@ -9,7 +9,7 @@ import java.util.List;
 
 public class AgenciaRepositoryInMemoryImpl implements AgenciaRepository {
 //precisa ser uma lista para todas as agencias, clientes e veiculos para não ter repeticao como fqazer isso?
-    private List<Agencia> agencias = new ArrayList<>();
+    private static List<Agencia> agencias = new ArrayList<>();
 
     //TODO métodos
     @Override
@@ -64,5 +64,16 @@ public class AgenciaRepositoryInMemoryImpl implements AgenciaRepository {
         }else{
             throw new CrudRepositoryExeption("o id não foi encontrado");
         }
+    }
+
+    public List<Agencia> getAgencias() {
+        return agencias;
+    }
+
+    public boolean isAgenciaExistente(String name){
+        Agencia agencia = agencias.stream().filter(ag -> ag.getNome().equalsIgnoreCase(name))
+                .findFirst().orElse(null);
+
+        return agencia != null;
     }
 }

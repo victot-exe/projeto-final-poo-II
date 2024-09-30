@@ -7,6 +7,12 @@ public class Agencia extends BaseModel {
     private String nome;
     private String logradouro;
 
+    public Agencia(String nome, String logradouro) {
+        super();
+        this.nome = nome;
+        this.logradouro = logradouro;
+    }
+
     public String getLogradouro() {
         return logradouro;
     }
